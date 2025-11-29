@@ -1,0 +1,51 @@
+{
+  "name": "@dashkite/fairfax",
+  "version": "0.0.0",
+  "description": "Grid helpers",
+  "keywords": [],
+  "homepage": "https://github.com/dashkite/fairfax#readme",
+  "bugs": {
+    "url": "https://github.com/dashkite/fairfax/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dashkite/fairfax.git"
+  },
+  "license": "SEE LICENSE IN LICENSE.md",
+  "contributors": [
+    "Dan Yoder <dan@dashkite.com>",
+    "David Harper <david@dashkite.com>",
+    "Chand Rajendra-Nicolucci <chand@dashkite.com>"
+  ],
+  "exports": {
+    ".": {
+      "browser": "./build/browser/src/index.js",
+      "node": "./build/node/src/index.js"
+    }
+  },
+  "main": "build/node/src/index.js",
+  "files": [
+    "build/browser/src",
+    "build/node/src"
+  ],
+  "scripts": {
+    "test": "genie test",
+    "build": "genie build"
+  },
+  "devDependencies": {
+    "@dashkite/amen": "^0.2.0",
+    "@dashkite/amen-console": "^0.0.2",
+    "@dashkite/assert": "^0.1.4",
+    "@dashkite/genie": "^0.20.14",
+    "@dashkite/genie-clean": "^0.13.12",
+    "@dashkite/genie-coffee": "^0.13.15"
+  },
+  "dependencies": {
+    "@dashkite/generic": "^0.9.18",
+    "@dashkite/joy": "^0.12.25",
+    "@dashkite/metro": "link:../metro",
+    "chalk": "4",
+    "mathjs": "^15.1.0",
+    "table": "^6.9.0"
+  }
+}
