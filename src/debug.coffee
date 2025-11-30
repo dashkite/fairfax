@@ -7,18 +7,24 @@ import sharp from "sharp"
 
 debug = do ({ colors } = {}) ->
 
-  colors = [
-    "#000000"
-    "#1E93FF"
-    "#F93C31"
-    "#4FCC30"
-    "#FFDC00"
-    "#999999"
-    "#E53AA3"
-    "#FF851B"
-    "#87D8F1"
-    "#921231"
-  ]
+  Colors =
+    grid: [
+      "#000000"
+      "#1E93FF"
+      "#F93C31"
+      "#4FCC30"
+      "#FFDC00"
+      "#999999"
+      "#E53AA3"
+      "#FF851B"
+      "#87D8F1"
+      "#921231"
+    ]
+    null: "#555"
+    negative: "#FFF"
+    border: "#333"
+
+
 
   ( grid ) ->
 
@@ -37,18 +43,18 @@ debug = do ({ colors } = {}) ->
         value = grid.get [ m, n ]
         color =
           if !value?
-            "#555" 
+            Colors.null
           else if value >= 0
             colors[ value ]
           else
-            "#FFF"
+            Colors.negative
         svg.rect
           x: ( n * k )
           y: ( m * k )
           width: k
           height: k
           fill: color 
-          stroke: "#333"
+          stroke: Colors.border
           "stroke-width": Math.floor k/25
 
     image = await do ->
