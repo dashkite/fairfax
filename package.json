@@ -46,6 +46,9 @@
     "@dashkite/metro": "link:../metro",
     "chalk": "4",
     "mathjs": "^15.1.0",
-    "table": "^6.9.0"
+    "sharp": "^0.34.5",
+    "svg-builder": "^3.0.4",
+    "table": "^6.9.0",
+    "terminal-image": "^4.1.0"
   }
 }

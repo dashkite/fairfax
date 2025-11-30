@@ -29,7 +29,16 @@ do ->
 
         test "set", ->
           assert.equal 0, A.get [ 7, 7 ]
-          debug A
+
+        test "debug", ->
+          debug Grid.from M.matrix [
+            [ 1..5 ]
+            [ 2..6 ]
+            [ 3..7 ]
+            [ 4..8 ]
+            [ 5..9 ]
+          ]
+
 
       ] 
   

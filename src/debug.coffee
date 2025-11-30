@@ -1,5 +1,9 @@
-import { table } from "table"
-import chalk from "chalk"
+# import { table } from "table"
+# import chalk from "chalk"
+
+import SVG from "svg-builder"
+import TerminalImage from "terminal-image"
+import sharp from "sharp"
 
 debug = do ({ colors } = {}) ->
 
@@ -17,23 +21,42 @@ debug = do ({ colors } = {}) ->
   ]
 
   ( grid ) ->
-    _output =
-      for m in [0...grid.rows]
-        for n in [0...grid.columns]
-          value = grid._.get [ m, n ]
-          color =
-            if !value?
-              "#555" 
-            else if value >= 0
-              colors[ value ]
-            else
-              "#FFF"
-          chalk.bgHex( color )("   ")  
 
-    console.log { m, n }     
-    console.log table _output, 
-      columnDefault:
-        paddingLeft: 0
-        paddingRight: 0
+    k = 200
+    height = grid.rows * k
+    width = grid.columns * k
+
+    svg = SVG
+      .create()
+      .width width
+      .height height
+      .viewBox("0 0 #{ width } #{ height }")
+
+    for m in [ 0...grid.rows ]
+      for n in [ 0...grid.columns ]
+        value = grid.get [ m, n ]
+        color =
+          if !value?
+            "#555" 
+          else if value >= 0
+            colors[ value ]
+          else
+            "#FFF"
+        svg.rect
+          x: ( n * k )
+          y: ( m * k )
+          width: k
+          height: k
+          fill: color 
+          stroke: "#333"
+          "stroke-width": Math.floor k/25
+
+    image = await do ->
+      ( sharp Buffer.from svg.render())
+        .png()
+        .toBuffer()
+
+    console.log { m, n }
+    console.log await TerminalImage.buffer image, width: "90%"
 
 export { debug }
